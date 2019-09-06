@@ -1,0 +1,284 @@
+<?php
+ob_start();
+session_start();
+if(isset($_SESSION['id']))
+{
+
+function __autoload($class_name) 
+{
+require_once "model/".$class_name.".php";
+
+}
+//    require_once "model/producttype_model.php";
+//     require_once "model/category_model.php";
+//      require_once "model/district_model.php";
+$producttype_model=new producttype_model();
+
+?>
+<!DOCTYPE html>
+<html>
+
+<?php
+include'view/head.php';
+?>
+
+<body>
+<!--  wrapper -->
+<div id="wrapper">
+<?php
+include'view/header.html';
+include'view/navigation.html'; 
+
+?>
+    
+<div id="page-wrapper">
+<div class="row">
+<!-- page header -->
+<div class="col-lg-12">
+<h1 class="page-header">Jobs</h1>
+</div>
+<!--end page header -->
+</div>
+<div class="row">
+<div class="col-lg-12">
+<!-- Form Elements -->
+<?php 
+include 'view/job_header.php';
+?>
+<div class="panel panel-default">
+<div class="panel-heading">
+Jobs-Add Job
+</div>
+<div class="panel-body">
+<div id="status">
+<?php
+
+// $producttype_model->action();
+?>
+
+
+</div>
+
+<div class="row">
+
+
+<div class="col-lg-6" style=" width: 100%;" >
+
+<form role="form" id="form" action="controller/job_controller.php" method="post" enctype="multipart/form-data">
+
+
+<div class="form-group">
+<label>Job Name*:</label>
+<input name="name" type="text" id="name" class="form-control" data-validation-engine="validate[required]" placeholder="job Name">
+</div>
+<!--<div class="form-group">
+<label>Salary*:</label>
+<input name="salary" type="text" id="salary" class="form-control" data-validation-engine="validate[required]" placeholder="Salary">
+</div>
+<div class="form-group">
+<label>Job Type*:</label>
+<input name="type" type="text" id="type" class="form-control" data-validation-engine="validate[required]" placeholder="Job Type">
+</div>
+    <div class="form-group">
+<label>Location*:</label>
+<input name="location" type="text" id="location" class="form-control" data-validation-engine="validate[required]" placeholder="Location">
+</div>
+      <div class="form-group">
+<label>Post Date*:</label>
+<input name="pdate" type="text" id="pdate" class="form-control" data-validation-engine="validate[required]" placeholder="Post Date">
+</div>
+         <div class="form-group">
+<label>Last Date*:</label>
+<input name="ldate" data-role="date" type="text" id="ldate" class="form-control" data-validation-engine="validate[required]" placeholder="Last Date">
+</div>
+<div class="form-group">
+<label>vacancies*:</label>
+<select id="vacancies" name="vacancies" class="form-control" data-validation-engine="validate[required]">
+<option value="">select</option>
+<?php
+$producttype_model->order();
+?>
+</select>
+</div>
+      <div class="form-group">
+<label>Qualification*:</label>
+<textarea name="qualification" class="form-control" rows="20"  id="qualification" data-validation-engine="validate[required]" placeholder="Description" ></textarea>
+</div>
+       <div class="form-group">
+<label>Experience*:</label>
+<textarea name="experience" class="form-control" rows="20"  id="experience" data-validation-engine="validate[required]" placeholder="Description" ></textarea>
+</div>
+        <div class="form-group">
+<label>Key skills*:</label>
+<textarea name="keyskill" class="form-control" rows="20"  id="keyskill" data-validation-engine="validate[required]" placeholder="Description" ></textarea>
+</div>-->
+   <div class="form-group">
+<label>Description*:</label>
+<textarea name="description" class="form-control" rows="20"  id="editor1" data-validation-engine="validate[required]" placeholder="Description" ></textarea>
+</div>
+
+<div class="form-group">
+<label>Order*:</label>
+<select id="order" name="num" class="form-control" data-validation-engine="validate[required]">
+<option value="">select</option>
+<?php
+$producttype_model->order();
+?>
+</select>
+</div>
+
+<!-- <div class="form-group">
+<label>Sub job</label>
+<label class="radio-inline">
+    <input type="radio" name="child" id="optionsRadiosInline1" value="0" checked="">Disabled
+</label>
+<label class="radio-inline">
+    <input type="radio" name="child" id="optionsRadiosInline2" value="1">Enabled
+</label>
+
+</div>-->
+<input id="formbutton" name="addjob" type="submit" value="Submit" class="btn btn-primary"/>
+
+</form>
+</div>
+
+
+
+
+
+
+</div>
+</div>
+</div>
+<!-- End Form Elements -->
+</div>
+</div>
+
+
+
+
+
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+<!-- end wrapper -->
+
+<!-- Core Scripts - Include with every page -->
+<script src="assets/plugins/jquery-1.10.2.js"></script>
+<!--     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script> -->
+<script src="assets/plugins/bootstrap/bootstrap.min.js"></script>
+<script src="assets/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="assets/plugins/pace/pace.js"></script>
+<script src="assets/scripts/siminta.js"></script>
+<script src="js/jquery.validationEngine.js"></script>
+<script src="js/jquery.validationEngine-en.js"></script>
+<script src="js/foundation-datepicker.js"></script>
+<script src="ckeditor/ckeditor.js"></script>
+
+<!--<script src="js/jquery.form.js"></script>-->
+
+<script>
+// Replace the <textarea id="editor1"> with a CKEditor
+// instance, using default configuration.
+// CKEDITOR.replace( 'editor1' );
+</script>
+<script src="dist/js/lobibox.min.js"></script>
+<!-- <link href="assets/css/bootstrap.min.css" rel="stylesheet"/>-->
+<link rel="stylesheet" href="dist/css/Lobibox.min.css"/>
+<script type="text/javascript"> 
+$('#pdate').fdatepicker({
+					format: 'dd-mm-yyyy',
+					disableDblClickSelection: true
+				});
+                                $('#ldate').fdatepicker({
+					format: 'dd-mm-yyyy',
+					disableDblClickSelection: true
+				});
+window.id = '<?php echo $_SESSION['id']; ?>';
+$(document).ready(function(){
+
+<?php
+$producttype_model->Lobibox();
+?>
+
+CKEDITOR.replace( 'editor1', {
+filebrowserBrowseUrl : 'ckfinder/ckfinder.html',
+filebrowserImageBrowseUrl : 'ckfinder/ckfinder.html?type=Images',
+filebrowserFlashBrowseUrl : 'ckfinder/ckfinder.html?type=Flash',
+filebrowserUploadUrl : 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+filebrowserImageUploadUrl : 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+filebrowserFlashUploadUrl : 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
+});
+
+
+CKEDITOR.replace( 'qualification', {
+filebrowserBrowseUrl : 'ckfinder/ckfinder.html',
+filebrowserImageBrowseUrl : 'ckfinder/ckfinder.html?type=Images',
+filebrowserFlashBrowseUrl : 'ckfinder/ckfinder.html?type=Flash',
+filebrowserUploadUrl : 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+filebrowserImageUploadUrl : 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+filebrowserFlashUploadUrl : 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
+});
+
+
+
+CKEDITOR.replace( 'experience', {
+filebrowserBrowseUrl : 'ckfinder/ckfinder.html',
+filebrowserImageBrowseUrl : 'ckfinder/ckfinder.html?type=Images',
+filebrowserFlashBrowseUrl : 'ckfinder/ckfinder.html?type=Flash',
+filebrowserUploadUrl : 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+filebrowserImageUploadUrl : 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+filebrowserFlashUploadUrl : 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
+});
+
+
+CKEDITOR.replace( 'keyskill', {
+filebrowserBrowseUrl : 'ckfinder/ckfinder.html',
+filebrowserImageBrowseUrl : 'ckfinder/ckfinder.html?type=Images',
+filebrowserFlashBrowseUrl : 'ckfinder/ckfinder.html?type=Flash',
+filebrowserUploadUrl : 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+filebrowserImageUploadUrl : 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+filebrowserFlashUploadUrl : 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
+});
+$("#form").validationEngine({
+
+
+
+});
+
+
+
+
+
+
+
+
+
+
+});
+
+
+
+</script>
+
+</body>
+
+</html>
+
+<?php
+
+}
+else {
+header('location: index.html');    
+}
+ob_flush();
+/* 
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
+

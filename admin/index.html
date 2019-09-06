@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome to junaid</title>
+<!-- Core CSS - Include with every page -->
+<link href="assets/plugins/bootstrap/bootstrap.css" rel="stylesheet" />
+<link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link href="assets/plugins/pace/pace-theme-big-counter.css" rel="stylesheet" />
+<link href="assets/css/style.css" rel="stylesheet" />
+<link href="assets/css/main-style.css" rel="stylesheet" />
+<link href="css/validationEngine.jquery.css" rel="stylesheet" />
+</head>
+<body class="body-Login-back">
+<div class="container">
+<div class="row">
+<div class="col-md-4 col-md-offset-4 text-center logo-margin ">
+<img class="img-responsive"  src="../images/logo.png" alt=""/>
+</div>
+<div class="col-md-4 col-md-offset-4">
+<div class="login-panel panel panel-default">                  
+<div class="panel-heading">
+<h3 class="panel-title">Please Sign In</h3>
+</div>
+<div class="panel-body">
+<div id="fail"></div>
+<form role="form" id="login" action=" " method="post">
+<fieldset>
+<input type="hidden" name="login" value="login" />
+<div class="form-group">
+<input class="form-control validate[required]" placeholder="Username" name="username" type="text" autofocus id="username">
+</div>
+<div class="form-group">
+<input class="form-control validate[required,minSize[6]]" placeholder="Password" name="password" type="password" id="password" value="">
+</div>
+<div class="form-group">
+<a  href="#" data-toggle="modal" data-target="#myModal">
+Forgot Password?
+</a>
+</div>
+<!-- Change this to a button or input when using this as a form -->
+<input  name="login" type="submit" value="Login"  class="btn btn-lg btn-success btn-block" id="loginbutton"/>
+</fieldset>
+</form>
+
+
+
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+<h4 class="modal-title" id="myModalLabel">Forgot Password ?</h4>
+</div>
+<div class="modal-body">
+<div class="panel-body">    
+<div id="fstatus"></div>    
+<form role="form" id="forgot" action=" " method="post">
+<fieldset>
+<input type="hidden" name="login" value="login" />
+<div class="form-group">
+<input class="form-control validate[required,custom[email]]" placeholder="Email" name="email" type="text" autofocus id="email">
+</div>
+<div class="form-group">
+<input  name="forgot" type="submit" value="Send"  class="btn btn-lg btn-success btn-block" id="forgotbutton"/>
+</div>
+</fieldset>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Core Scripts - Include with every page -->
+<script src="assets/plugins/jquery-1.10.2.js"></script>
+<script src="assets/plugins/bootstrap/bootstrap.min.js"></script>
+<script src="assets/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="js/jquery.validationEngine.js"></script>
+<script src="js/jquery.validationEngine-en.js"></script>
+<script src="dist/js/lobibox.min.js"></script>
+<link href="assets/css/bootstrap.min.css" rel="stylesheet"/>
+<link rel="stylesheet" href="dist/css/Lobibox.min.css"/>
+<script type="text/javascript">      
+$(document).ready(function(){
+$("#login").validationEngine({
+});
+$('#loginbutton').click(function(e){
+e.preventDefault();
+//if invalid do nothing
+if(!$("#login").validationEngine('validate')){
+return false;
+}
+var dataString = 'login=login&password=' + $('input[name=password]').val() + '&username=' + $('input[name=username]').val();
+$.ajax({
+type: "POST",
+url: "controller/login_controller.php",
+data: dataString,
+success: function (data) {
+var json = $.parseJSON(data);
+if(json.status=="yes")
+{window.location = "home.php";
+}
+else
+{
+$('input[name=password]').val('');
+$('input[name=username]').val('');
+Lobibox.alert('info', {
+msg: "Login Failed.."
+});
+}
+}
+,
+error: function() 
+{
+}
+});
+return false;
+})
+
+$("#forgot").validationEngine({
+
+});
+$('#forgotbutton').click(function(e){
+e.preventDefault();
+
+//if invalid do nothing
+if(!$("#forgot").validationEngine('validate')){
+return false;
+}
+var dataString = 'forgotpassword=forgotpassword&email='+ $('input[name=email]').val()+'' ;
+$.ajax({
+type: "POST",
+url: "controller/forgot_controller.php",
+data: dataString,
+success: function (data) {
+var json = $.parseJSON(data);
+if(json.status=="yes")
+{
+$('input[name=email]').val('');
+Lobibox.alert('info', {
+msg: "Your username and password send to your mail.Please check your mail.."
+});
+}
+else
+{
+$('input[name=email]').val('');
+Lobibox.alert('info', {
+msg: "This is not the registerd mail.."
+});
+}
+}
+,
+error: function() 
+{
+}
+});
+return false;
+})
+});
+</script>
+</body>
+</html>
