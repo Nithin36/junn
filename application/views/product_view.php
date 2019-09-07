@@ -2,17 +2,17 @@
 <div class="container">
 <div class=" wow fadeInDown center">
 
-<h2>Products</h2>
+<h2>Our Medicines</h2>
 </div>
 
 <div class="blog">
 <div class="row">
 
-<aside class="col-md-3">
+<!--<aside class="col-md-3">
 
 
 <div class="col-xs-12 col-md-12 col-sm-5">
-<!--<h2>Category</h2>-->
+<h2>Category</h2>
 <div class="accordion">
 <div class="panel-group" id="accordion1">
     <?php
@@ -46,9 +46,9 @@ foreach ($allcategories as $category)
          
             </a></li>
 <?php } ?>                                  
-<!--                                    <li><a href="#"><input type="checkbox" name="name" id="name"/> November 2013 <span class="pull-right">(32)</span></a></li>
+                                    <li><a href="#"><input type="checkbox" name="name" id="name"/> November 2013 <span class="pull-right">(32)</span></a></li>
                                     <li><a href="#"><input type="checkbox" name="name" id="name"/>October 2013 <span class="pull-right">(19)</span></a></li>
-                                    <li><a href="#"><input type="checkbox" name="name" id="name"/> September 2013 <span class="pull-right">(08)</span></a></li>-->
+                                    <li><a href="#"><input type="checkbox" name="name" id="name"/> September 2013 <span class="pull-right">(08)</span></a></li>
                                 </ul>
 </div>
 </div>
@@ -84,7 +84,7 @@ foreach ($allusertypes as $usertype)
      <li ><a <?php if(($this->router->fetch_class()=="product")&&($this->router->fetch_method()=="listproductgender")&&($this->encrypt->decode(str_replace(array('-', '_', '~'), array('+', '/', '='),$_GET['id']))==$usertype['id'])){ ?> style="color: #d4af37;"  <?php }?> href="<?php echo base_url() ?>index.php/product/listproductgender/index?id=<?php echo str_replace(array('+', '/', '='), array('-', '_', '~'),$this->encrypt->encode($usertype['id'])); ?>"><?php echo $usertype['name']?>
          
             </a></li>
-<!--                                    <li><a href="#"><input type="checkbox" name="gender" id="gender"/> <?php echo $usertype['name'] ?><span class="pull-right">(97)</span></a></li>-->
+                                    <li><a href="#"><input type="checkbox" name="gender" id="gender"/> <?php echo $usertype['name'] ?><span class="pull-right">(97)</span></a></li>
 <?php } ?>                                    
                                    
                                 </ul>
@@ -131,13 +131,13 @@ foreach ($allfragrances as $fragrance)
     <?php
 }
     ?>
-</div><!--/#accordion1-->
+</div>/#accordion1
 </div>
 </div>
 
 
-</aside> 
-<div class="col-md-9">
+</aside> -->
+<div class="col-md-12">
 <?php
     
 if(!empty($allproducts))
@@ -145,7 +145,7 @@ if(!empty($allproducts))
 foreach ($allproducts as $product)
 {
 ?> 
-<div class="col-xs-12 col-sm-6 col-md-4">
+<div class="col-xs-12 col-sm-6 col-md-3">
 <div class="recent-work-wrap">
 
 <div class="single-shop-product">
@@ -156,7 +156,7 @@ foreach ($allproducts as $product)
 </div>
 <h2 class="mintitle"><a href=""><?php echo $product['name'];  ?> <?php echo $product['quantity'];  ?> <?php echo $product['sunit'];  ?></a></h2>
 <ul class="tag-cloud">
-<li><a class="btn btn-xs" href="#"><?php echo $product['uname'];  ?></a></li>
+<!--<li><a class="btn btn-xs" href="#"><?php echo $product['uname'];  ?></a></li>-->
 
 </ul>
 <div class="product-carousel-price">

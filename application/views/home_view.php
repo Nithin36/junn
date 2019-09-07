@@ -51,7 +51,7 @@ if(!empty($homeproducts))
  
         <div class="container">
         <div class="center wow fadeInDown animated" style="visibility: visible; animation-name: fadeInDown;">
-                <h2>LATEST PRODUCTS</h2>
+                <h2>OUR MEDICINES</h2>
             </div>
             <div class="row">
                 
@@ -117,7 +117,7 @@ foreach ($homeproducts as $homeproduct)
 
  
  
-<section id="bottom">
+<!--<section id="bottom">
         <div class="container">
         <div class="row">
        
@@ -159,7 +159,7 @@ foreach ($homeproducts as $homeproduct)
 
    
       </div>
-    </section><!--/#bottom-->
+    </section>-->
 
 
 

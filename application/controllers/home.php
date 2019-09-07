@@ -39,7 +39,7 @@ $status="no";
 
   $data['homecontent']=$this->homemenu_model->get_homecontent();
   $data['sliders']=$this->slider_model->get_sliders();
-   $data['homeproducts']=$this->product_model->get_product_limit(4);
+   $data['homeproducts']=$this->product_model->get_product_limit(8);
    $data['homelocationmap']=$this->locationmap_model->get_locationmap_common();
    
    //$data['homegallery']=$this->gallery_model->get_gallery_first();

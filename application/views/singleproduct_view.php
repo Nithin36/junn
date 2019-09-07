@@ -30,9 +30,9 @@ $remaining=$singleproduct['noofitems']-$singleproduct['solditems'];
 <?php if(trim($singleproduct['bname'])!="") {?> <li><i class="fa fa-angle-double-right"></i>  Brand        : <span><?php echo $singleproduct['bname'];  ?> </a></li><?php } ?>
 <!--                                    <li><i class="fa fa-angle-double-right"></i>  Availability : <span><?php if($remaining>0) { echo $remaining; } else { echo "Out of stock"; } ?> </a></li>-->
 </ul>
-<ul class="tag-cloud">
+<!--<ul class="tag-cloud">
 <li><a class="btn btn-xs " href="#"><?php echo $singleproduct['uname'];  ?></a></li>
-</ul>
+</ul>-->
 <form role="form" id="form1" action="" method="post">
 <input type="hidden" name="pid" value="<?php echo $this->encrypt->encode($singleproduct['id']);?>"/>
 <input type="hidden" name="uid" value="<?php echo $this->session->userdata('uniqueid'); ?>"/>

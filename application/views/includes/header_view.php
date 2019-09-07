@@ -61,7 +61,12 @@
 
 
 <script type="text/javascript">
+ function searchproducttitle()
+ {
+     
+     window.location.href ="<?php echo base_url()."index.php/product/listproducttitle/index?title=".str_replace(array('+', '/', '='), array('-', '_', '~'), $this->encrypt->encode($_GET['title'])) ?>";
 
+ }
 $(document).ready(function () {
 
 
@@ -419,8 +424,8 @@ error: function ()
 <div class="row">
 
 
-
-<div class="col-sm-6 col-xs-4">
+<!--
+<div class="col-sm-3 col-xs-3">
 
 <?php
 
@@ -450,13 +455,13 @@ if (!empty($homecontacts)) {
 
 ?>
 
-</div>
+</div>-->
 
 
 
 
 
-<div class="col-sm-2 col-xs-4">
+<!--<div class="col-sm-3 col-xs-3">
 
 <div class="social">
 
@@ -472,17 +477,35 @@ if (!empty($homecontacts)) {
 
 </div>
 
-</div>
+</div>-->
 
-<div class="col-sm-3 col-xs-8">
-
-
-
-<ul class="list-inline pull-right" style="margin-bottom:0">
+<div class="col-sm-12 col-xs-12">
 
 
 
-<li class="dropdown dropdown-small">
+<ul class="list-inline  pull-right" style="margin-bottom:0px; margin-left:9px;">
+
+
+<?php
+
+if ($this->router->fetch_class() != "placeorder") {
+
+?>
+
+<li class="">
+
+<div class="shopping-item">
+
+<a href="<?php echo base_url() ?>index.php/product/viewcart/">Cart - <i class="fa fa-shopping-cart"></i> <span class="product-count" id="cou"><?php echo $cartlist['noofitems'] ?></span></a>
+
+</div></li>
+
+<?php
+
+}
+
+?>
+<li class="dropdown dropdown-small pull-right">
 
 
 
@@ -520,30 +543,25 @@ if (!empty($homecontacts)) {
 
 
 
-<?php
 
-if ($this->router->fetch_class() != "placeorder") {
-
-?>
-
-<li class="">
-
-<div class="shopping-item">
-
-<a href="<?php echo base_url() ?>index.php/product/viewcart/">Cart - <i class="fa fa-shopping-cart"></i> <span class="product-count" id="cou"><?php echo $cartlist['noofitems'] ?></span></a>
-
-</div></li>
-
-<?php
-
-}
-
-?>
 
 
 
 </ul>
+    <?php
 
+if ($this->router->fetch_class() != "placeorder") {
+
+?>
+<div class="search  pull-right">
+                                <form role="form">
+                                    <input type="text" id="ptitle" name="ptitle" class="search-form" autocomplete="off" placeholder="Search">
+                                    <i class="fa fa-search" onclick="searchproducttitle()"></i>
+                                </form>
+                           </div>
+    <?php
+}
+?>
 </div>
 
 </div>
@@ -566,7 +584,7 @@ if ($this->router->fetch_class() != "placeorder") {
 
 <nav class="navbar navbar-inverse" role="banner">
 
-<div class="new_toppart"> 
+<!--<div class="new_toppart"> 
 
 <div class="container">
 
@@ -584,7 +602,7 @@ if ($this->router->fetch_class() != "placeorder") {
 
 </div>
 
-</div>
+</div>-->
 
 <div class="new_toppart1"> 
 
@@ -610,7 +628,7 @@ if ($this->router->fetch_class() != "placeorder") {
 
 
 
-<div class="collapse navbar-collapse navbar-left">
+<div class="collapse navbar-collapse navbar-right">
 
 <!--                    <ul class="nav navbar-nav">
 
@@ -702,32 +720,25 @@ foreach ($menu['sub'] as $sub) {
 
 
 
-<?php
-
-if (!empty($categories)) {
 
 
-
-foreach ($categories as $category) {
-
-?>  
-
-<li <?php if (($this->router->fetch_class() == "product") && ($this->router->fetch_method() == "listproduct") && ($this->encrypt->decode(str_replace(array('-', '_', '~'), array('+', '/', '='), $_GET['id'])) == $category['id'])) { ?> class="active" <?php } ?>> 
-
-<a  href="<?php echo base_url() ?>index.php/product/listproduct/index?id=<?php echo str_replace(array('+', '/', '='), array('-', '_', '~'), $this->encrypt->encode($category['id'])); ?>"><?php echo $category['name']; ?></a> </li>                    
+     
 
 
+<li class="dropdown <?php if ($this->router->fetch_class() == "product") { ?> active <?php } ?>">
 
-<?php
+    <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">Medicines <i  class="fa fa-angle-down"></i></a>
 
-}
+<ul class="dropdown-menu">
 
-}
+<li><?php echo anchor('product/product', 'Buy'); ?></li>
 
-?>        
+<li><?php echo anchor('product/product', 'Sell'); ?></li>
 
 
+</ul>
 
+</li>
 
 
 

@@ -76,7 +76,79 @@ $data["links"] = $str_links ;
 $this->load->view('product_view',$data);
 $this->load->view('includes/footer_view');
 }
+public function listproducttitle()
+{
+   
+    
+$title=$this->encrypt->decode(str_replace(array('-', '_', '~'), array('+', '/', '='),$_GET['title']));
+    
 
+$this->load->helper('url');
+
+$this->load->library('pagination');
+$this->load->model('product_model'); 
+$this->load->model('usertype_model'); 
+$this->load->model('category_model'); 
+$this->load->model('fragrance_model'); 
+$data["allcategories"] = $this->category_model->get_categories_all();
+$data["allusertypes"] = $this->usertype_model->get_usertype_all();
+$data["allfragrances"] = $this->fragrance_model->get_fragrance_all();
+$config['base_url'] = base_url()."index.php/product/listproducttitle/index?title=".$_GET['title'];
+$config['total_rows'] = $this->product_model->count_producttitle($title);
+
+
+$limit=12;
+$config['per_page'] = $limit; 
+$config['use_page_numbers'] = TRUE;
+$config['page_query_string'] = TRUE;
+$config['enable_query_strings'] = TRUE;
+$config['full_tag_open'] = '<ul class="pagination pagination-lg">';
+$config['full_tag_close'] = '</ul>';
+$config['first_link'] = 'First';
+$config['first_tag_open'] = '<li>';
+$config['first_tag_close'] = '</li>';
+
+$config['last_link'] = 'Last';
+$config['last_tag_open'] = '<li>';
+$config['last_tag_close'] = '</li>';
+
+$config['next_link'] = 'Next ';
+$config['next_tag_open'] = ' <li>';
+$config['next_tag_close'] = '</li>';
+
+$config['prev_link'] = 'Previous ';
+$config['prev_tag_open'] = '<li>';
+$config['prev_tag_close'] = '</li>';
+
+
+$config['cur_tag_open'] ='<li class="active"><a href="#">';
+$config['cur_tag_close'] = '</a></span>';
+
+$config['num_tag_open'] = '<li>';
+$config['num_tag_close'] = '</li>';
+
+
+$this->pagination->initialize($config);
+
+//        
+$offset = 0;
+if (!empty($_GET['per_page'])) {
+$pageNo = $_GET['per_page'];
+$offset = ($pageNo - 1) * $limit;
+}
+$data["allproducts"] = $this->product_model->pagination_select_producttitle($limit,$offset,$id);
+//$data['selectcategory']=$this->product_model->get_productsubcategory($id) ;
+
+
+$data["links"] = $this->pagination->create_links();
+//= explode('&nbsp;', $str_links);
+
+
+
+
+$this->load->view('product_view',$data);
+$this->load->view('includes/footer_view');
+}
 
 public function listproduct()
 {
