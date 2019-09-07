@@ -547,8 +547,12 @@ animation: fadeInUp 300ms linear 1200ms both;
 background: #FFF;
 padding:75px 0;
 
-}
 
+}
+.min 
+{
+  min-height: 750px;  
+}
 .features{
 padding: 0;
 }

@@ -1,4 +1,4 @@
-<section id="about-us">
+<section id="about-us" class="min">
 <div class="container">
 <div class=" wow fadeInDown center">
 

@@ -4,7 +4,7 @@
   {
 	
 	  ?>
-     <section id="feature">
+<section id="feature" class="min">
         <div class="container">
 			<div class="center wow fadeInDown">
 				<h2><?php echo stripcslashes($page['name']); ?></h2>

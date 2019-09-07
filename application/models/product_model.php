@@ -176,7 +176,7 @@ function count_producttitle($title)
 
 $sql="select product.*,(select name from brand where id=product.brand) as bname,(select name from usertype where id=product.usertype) as uname,(select name from sizeunit where id=productsize.sizeunit) as sunit,productsize.quantity,productsize.price,productsize.onlineprice"
 ." from product left join productsize on productsize.product_id = product.id"
-." where name like'".$title."%' and product.status=1"
+." where product.name like'".$title."%' and product.status=1"
 ." order by product.num asc ";
 
 $query = $this->db->query($sql);
@@ -189,7 +189,7 @@ public function pagination_select_producttitle($limit, $page=null,$title)
 
 $sql="select product.*,(select name from brand where id=product.brand) as bname,(select name from usertype where id=product.usertype) as uname,(select name from sizeunit where id=productsize.sizeunit) as sunit,productsize.quantity,productsize.price,productsize.onlineprice"
 ." from product left join productsize on productsize.product_id = product.id"
-." where name like'".$title."%' and product.status=1"
+." where product.name like'".$title."%' and product.status=1"
 ." order by product.num asc limit ".$page." ,".$limit."  ";
 
 $query = $this->db->query($sql);

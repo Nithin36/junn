@@ -63,9 +63,11 @@
 <script type="text/javascript">
  function searchproducttitle()
  {
-     
-     window.location.href ="<?php echo base_url()."index.php/product/listproducttitle/index?title=".str_replace(array('+', '/', '='), array('-', '_', '~'), $this->encrypt->encode($_GET['title'])) ?>";
-
+     var ptitle=$("#ptitle").val();
+     if($.trim(ptitle)!="")   
+     window.location.href ="<?php echo base_url()."index.php/product/listproducttitle/index?title="?>"+ptitle;
+ else
+window.location.href ="<?php echo base_url()."index.php/product/product/";?>";
  }
 $(document).ready(function () {
 
@@ -548,20 +550,14 @@ if ($this->router->fetch_class() != "placeorder") {
 
 
 </ul>
-    <?php
 
-if ($this->router->fetch_class() != "placeorder") {
-
-?>
 <div class="search  pull-right">
                                 <form role="form">
-                                    <input type="text" id="ptitle" name="ptitle" class="search-form" autocomplete="off" placeholder="Search">
+                                    <input type="text" id="ptitle" name="ptitle" class="search-form" autocomplete="off" placeholder="Search" value="<?php if (($this->router->fetch_class() == "product")&&((isset($_GET['title'])))&&(trim($_GET['title'])!="")) { echo $_GET['title']; }?>">
                                     <i class="fa fa-search" onclick="searchproducttitle()"></i>
                                 </form>
                            </div>
-    <?php
-}
-?>
+
 </div>
 
 </div>
@@ -733,7 +729,7 @@ foreach ($menu['sub'] as $sub) {
 
 <li><?php echo anchor('product/product', 'Buy'); ?></li>
 
-<li><?php echo anchor('product/product', 'Sell'); ?></li>
+<li><?php echo anchor('product/sellproduct', 'Sell'); ?></li>
 
 
 </ul>
@@ -745,7 +741,7 @@ foreach ($menu['sub'] as $sub) {
 
 <!--<li <?php if ($this->router->fetch_class() == "product") { ?> class="active" <?php } ?>> <?php echo anchor('product/product', 'Products'); ?> </li>-->
 
-<li <?php if ($this->router->fetch_class() == "news") { ?> class="active" <?php } ?>> <?php echo anchor('news/news', 'News & Events'); ?> </li>   
+<!--<li <?php if ($this->router->fetch_class() == "news") { ?> class="active" <?php } ?>> <?php echo anchor('news/news', 'News & Events'); ?> </li>   -->
 
 <!--                <li class="dropdown">
 

@@ -80,9 +80,9 @@ public function listproducttitle()
 {
    
     
-$title=$this->encrypt->decode(str_replace(array('-', '_', '~'), array('+', '/', '='),$_GET['title']));
+$title=$_GET['title'];
     
-
+if(trim())
 $this->load->helper('url');
 
 $this->load->library('pagination');
@@ -93,6 +93,7 @@ $this->load->model('fragrance_model');
 $data["allcategories"] = $this->category_model->get_categories_all();
 $data["allusertypes"] = $this->usertype_model->get_usertype_all();
 $data["allfragrances"] = $this->fragrance_model->get_fragrance_all();
+
 $config['base_url'] = base_url()."index.php/product/listproducttitle/index?title=".$_GET['title'];
 $config['total_rows'] = $this->product_model->count_producttitle($title);
 
@@ -136,7 +137,7 @@ if (!empty($_GET['per_page'])) {
 $pageNo = $_GET['per_page'];
 $offset = ($pageNo - 1) * $limit;
 }
-$data["allproducts"] = $this->product_model->pagination_select_producttitle($limit,$offset,$id);
+$data["allproducts"] = $this->product_model->pagination_select_producttitle($limit,$offset,$title);
 //$data['selectcategory']=$this->product_model->get_productsubcategory($id) ;
 
 
@@ -378,6 +379,14 @@ public function viewproduct($pid)
 $this->load->model('product_model');
 $data['singleproduct']=$this->product_model->get_product_single($this->encrypt->decode(str_replace(array('-', '_', '~'), array('+', '/', '='),$pid)));
 $this->load->view('singleproduct_view',$data);
+$this->load->view('includes/footer_view');
+}
+
+public function sellproduct($pid)
+{
+$this->load->model('product_model');
+
+$this->load->view('sellproduct_view');
 $this->load->view('includes/footer_view');
 }
 public function addtocartresponse()

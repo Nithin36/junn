@@ -3,7 +3,7 @@
 <section id="feature" class="min">
         <div class="container">
             <div class="center wow fadeInDown">        
-                <h2>Enquiry</h2>
+                <h2>Sell Medicines</h2>
                              
              <?php echo validation_errors(); 
 
