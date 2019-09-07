@@ -389,6 +389,11 @@ $this->load->view('includes/footer_view');
 
 public function sellproduct()
 {
+    
+    	$this->load->helper('url');
+
+$this->load->helper('form');
+$this->load->library('form_validation');
 $this->load->model('product_model');
 
 $this->load->view('sellproduct_view');
