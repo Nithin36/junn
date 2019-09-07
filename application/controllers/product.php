@@ -82,7 +82,8 @@ public function listproducttitle()
     
 $title=$_GET['title'];
     
-if(trim())
+if(trim($title)!="")
+{
 $this->load->helper('url');
 
 $this->load->library('pagination');
@@ -149,6 +150,10 @@ $data["links"] = $this->pagination->create_links();
 
 $this->load->view('product_view',$data);
 $this->load->view('includes/footer_view');
+}
+ else {
+       redirect(base_url()."index.php/product/product"); 
+}
 }
 
 public function listproduct()
@@ -382,7 +387,7 @@ $this->load->view('singleproduct_view',$data);
 $this->load->view('includes/footer_view');
 }
 
-public function sellproduct($pid)
+public function sellproduct()
 {
 $this->load->model('product_model');
 
